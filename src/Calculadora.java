@@ -48,7 +48,6 @@ public class Calculadora {
             }
             System.out.println("Deseja fazer outra operação? ");
             deseja = ler.next();
-            
 
         }
         System.out.println("Obrigado!");
