@@ -73,11 +73,33 @@ public class Agenda {
                 telefone = ler.next();
                 System.out.println("Digite o email: ");
                 email = ler.next();
-
-            } else {
-                System.out.println("Deseja pesquisar por uma pessoa?");
-                deseja = ler.next();
             }
+
+            System.out.println("Deseja pesquisar por uma pessoa?");
+            deseja = ler.next();
+            if (deseja.equalsIgnoreCase("S")) {
+
+                usuario.pesquisarUsuario();
+            }
+
+            System.out.println("Deseja finalizar sistema de agenda? S / N");
+            deseja = ler.next();
+
+            if (deseja.equalsIgnoreCase("s")) {
+                System.out.println("FINALIZANDO SISTEMA......");
+            }
+            if (deseja.equalsIgnoreCase("Nn")) {
+                System.out.println("O que deseja fazer?\n1 - Cadastrar Pessoa?\n2 - Pesquisar Pessoa?");
+                String opcao = ler.next();
+                switch (opcao) {
+                    case "1":
+                        usuario.cadastrarPessoa();
+                        break;
+                    case "2":
+                        usuario.pesquisarUsuario();
+                }
+            }
+
         }
 
     }

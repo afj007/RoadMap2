@@ -37,16 +37,47 @@ public class Usuario {
         listaPessoas.add(pessoa);
     }
 
-    public void pesquisarUsuario(String opcao){
-        for (int i = 0; i < listaPessoas.size();i++){
-            switch (opcao){
+    public void pesquisarUsuario() {
+        System.out.println("\n1 - Nome:\n2 - Telefone:\n3 - Email:");
+        String opcao = ler.next();
+        String nome, telefone, email;
+        boolean existePessoa = false;
+        int numeroPessoasEncontrada = 0;
+        for (int i = 0; i < listaPessoas.size(); i++) {
+            switch (opcao) {
 
                 case "1":
-                    System.out.println("Digite o nome dele");
-
+                    System.out.println("Digite o nome dele(a)");
+                    nome = ler.next();
+                    if (nome.equals(listaPessoas.get(i).getNome())) existePessoa = true;
+                    break;
+                case "2":
+                    System.out.println("Digite o telefone dele(a):");
+                    telefone = ler.next();
+                    if (telefone.equals(listaPessoas.get(i).getNome())) existePessoa = true;
+                    break;
+                case "3":
+                    System.out.println("Digite o email dele(a)");
+                    email = ler.next();
+                    if (email.equals(listaPessoas.get(i).getNome())) existePessoa = true;
+                    break;
+                default:
+                    System.out.println("Opção invalida");
+                    break;
             }
+
+            if (existePessoa) {
+                numeroPessoasEncontrada++;
+                System.out.println("Achamos" + numeroPessoasEncontrada + " pessoa(s):");
+                System.out.println("Nome: " + listaPessoas.get(i).getNome());
+                System.out.println("Telefone: " + listaPessoas.get(i).getTelefone());
+                System.out.println("Email: " + listaPessoas.get(i).getTelefone());
+            }
+            if (numeroPessoasEncontrada == 0) {
+                System.out.println("Achamos nenhuma Pessoa");
+            }
+
         }
+
     }
-
-
 }
