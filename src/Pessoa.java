@@ -1,7 +1,7 @@
 public class Pessoa extends Usuario {
     String nome, telefone,email;
 
-    public Pessoa(String nome, String telefone, String email) {
+    public Pessoa() {
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
@@ -30,4 +30,7 @@ public class Pessoa extends Usuario {
     public void setEmail(String email) {
         this.email = email;
     }
+
+
+
 }

@@ -1,42 +1,65 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Agenda {
-    String deseja;
-    Usuario usuario = new Usuario();
+    private static String deseja;
+    private static Usuario usuario = new Usuario();
+    private static ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>();
+
     Scanner ler = new Scanner(System.in);
 
     public void main(String[] args) {
-        CadastrarUsuario();
-    }
+        System.out.println("Já é cadastrado ? S / N");
+        deseja = ler.next();
 
-    private void CadastrarUsuario() {
-        while (deseja.equalsIgnoreCase("S")) {
-            if () {
-                for (Object o : ) {
-                    if () {
-                        if () {
-                            for (Object o1 : ) {
-
-                            }
-                        }
-                    }
-                }
+        if (deseja.equalsIgnoreCase("S")) {
+            entrarNaAgenda();
+        } else {
+            System.out.println("Deseja cadastrar um usuário? S / N");
+            deseja = ler.next();
+            if (deseja.equalsIgnoreCase("s")) {
+                cadastrarUsuario();
+                entrarNaAgenda();
+            } else {
+                System.out.println("Finalizar Sistema..........");
             }
 
-            System.out.println("Digite o apelido do usuario: ");
+        }
+    }
+
+    private void cadastrarUsuario() {
+        String repetir = "S";
+        while (repetir.equalsIgnoreCase("s")) {
+            System.out.println("Digite um apelido de usuário: ");
             usuario.setApelido(ler.next());
 
-            System.out.println("Digite uma senha: ");
+            System.out.println("Digite um senha");
             usuario.setSenha(ler.next());
-        }
 
+            listaUsuarios.add(usuario);
+            System.out.println("Deseja cadastrar mais um usuário? S / N");
+            repetir = ler.next();
+        }
 
     }
 
-    public void EntrarNaAgenda() {
+    private void entrarNaAgenda() {
         Scanner ler = new Scanner(System.in);
         System.out.println("Digite o apelido de usuario: ");
         String apelido = ler.next();
+        for (int i = 0; i <= listaUsuarios.size(); i++) {
+
+            if (apelido.equals(listaUsuarios.get(i).getSenha())) {
+                System.out.println("Digite a senha: ");
+                String senha = ler.next();
+                if (senha.equals(listaUsuarios.get(i).getSenha())) {
+                    usuario.cadastrarPessoa();
+                } else {
+                    System.out.println("Digite novamete: ");
+                }
+
+            }
+        }
 
         if (apelido.equals(usuario.getApelido())) {
             System.out.println("Deseja cadastrar uma pessoa na agenda, S/N? ");
@@ -50,7 +73,6 @@ public class Agenda {
                 telefone = ler.next();
                 System.out.println("Digite o email: ");
                 email = ler.next();
-                usuario.CadatroPessoa(nome, telefone, email);
 
             } else {
                 System.out.println("Deseja pesquisar por uma pessoa?");
