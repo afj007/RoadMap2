@@ -1,6 +1,7 @@
 package Agenda;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Agenda {
@@ -10,6 +11,20 @@ public class Agenda {
     private static Scanner ler = new Scanner(System.in);
 
     public static void main(String[] args) {
+
+        AgendaEntity agendaEntity = new AgendaEntity();
+        List<Pessoa> pessoas = new ArrayList<>();
+
+        pessoas.add(new Pessoa());
+        pessoas.add(new Pessoa());
+        pessoas.add(new Pessoa());
+        pessoas.add(new Pessoa());
+
+        agendaEntity.setListaPessoas(pessoas);
+
+        agendaEntity.getListaPessoas().add(new Pessoa());
+
+
         String deseja;
         System.out.println("Já é cadastrado ? S / N");
         deseja = ler.next();
@@ -25,7 +40,6 @@ public class Agenda {
             } else {
                 System.out.println("Finalizar Sistema..........");
             }
-
         }
     }
 
