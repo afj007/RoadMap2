@@ -1,3 +1,5 @@
+package Agenda;
+
 public class Pessoa extends Usuario {
     String nome, telefone,email;
 
