@@ -5,26 +5,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Agenda {
-    private static ArrayList<Usuario> listaUsuarios;
+    private static ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>();
     private static ArrayList<Pessoa> listaPessoas = new ArrayList<Pessoa>();
 
     private static Scanner ler = new Scanner(System.in);
 
     public static void main(String[] args) {
-
-        AgendaEntity agendaEntity = new AgendaEntity();
-        List<Pessoa> pessoas = new ArrayList<>();
-
-        pessoas.add(new Pessoa());
-        pessoas.add(new Pessoa());
-        pessoas.add(new Pessoa());
-        pessoas.add(new Pessoa());
-
-        agendaEntity.setListaPessoas(pessoas);
-
-        agendaEntity.getListaPessoas().add(new Pessoa());
-
-
         String deseja;
         System.out.println("Já é cadastrado ? S / N");
         deseja = ler.next();
@@ -65,21 +51,25 @@ public class Agenda {
         String deseja;
         System.out.println("Digite o apelido de usuario: ");
         String apelido = ler.next();
-        for (int i = 0; i <= listaUsuarios.size(); i++) {
-
-            if (apelido.equals(listaUsuarios.get(i).getSenha())) {
-                System.out.println("Digite a senha: ");
-                String senha = ler.next();
-                if (senha.equals(listaUsuarios.get(i).getSenha())) {
-                    cadastrarPessoa();
-                } else {
-                    System.out.println("Digite novamete: ");
+        for (int i = 0; i < listaUsuarios.size(); i++) {
+            String senha = "";
+            while (senha.equals(listaUsuarios.get(i).getSenha())) {
+                if (apelido.equals(listaUsuarios.get(i).getSenha())) {
+                    System.out.println("Digite a senha: ");
+                    senha = ler.next();
+                    if (senha.equals(listaUsuarios.get(i).getSenha())) {
+                        System.out.println("Cadastrar Pessoa? S / N");
+                        deseja = ler.next();
+                        if (deseja.equalsIgnoreCase("s")) cadastrarPessoa();
+                        break;
+                    } else {
+                        System.out.println("Digite novamete: ");
+                    }
                 }
-
             }
         }
 
-        if (apelido.equals(usuario.getApelido())) {
+        /*if (apelido.equals(usuario.getApelido())) {
             System.out.println("Deseja cadastrar uma pessoa na agenda, S/N? ");
             String respota = ler.next();
 
@@ -91,36 +81,35 @@ public class Agenda {
                 telefone = ler.next();
                 System.out.println("Digite o email: ");
                 email = ler.next();
+            }*/
+
+        System.out.println("Deseja pesquisar por uma pessoa?");
+        deseja = ler.next();
+        if (deseja.equalsIgnoreCase("S")) {
+
+            pesquisarUsuario();
+        }
+
+        System.out.println("Deseja finalizar sistema de agenda? S / N");
+        deseja = ler.next();
+
+        if (deseja.equalsIgnoreCase("s")) {
+            System.out.println("FINALIZANDO SISTEMA......");
+        }
+        if (deseja.equalsIgnoreCase("n")) {
+            System.out.println("O que deseja fazer?\n1 - Cadastrar Agenda.Pessoa?\n2 - Pesquisar Agenda.Pessoa?");
+            String opcao = ler.next();
+            switch (opcao) {
+                case "1":
+                    cadastrarPessoa();
+                    break;
+                case "2":
+                    pesquisarUsuario();
             }
-
-            System.out.println("Deseja pesquisar por uma pessoa?");
-            deseja = ler.next();
-            if (deseja.equalsIgnoreCase("S")) {
-
-                pesquisarUsuario();
-            }
-
-            System.out.println("Deseja finalizar sistema de agenda? S / N");
-            deseja = ler.next();
-
-            if (deseja.equalsIgnoreCase("s")) {
-                System.out.println("FINALIZANDO SISTEMA......");
-            }
-            if (deseja.equalsIgnoreCase("Nn")) {
-                System.out.println("O que deseja fazer?\n1 - Cadastrar Agenda.Pessoa?\n2 - Pesquisar Agenda.Pessoa?");
-                String opcao = ler.next();
-                switch (opcao) {
-                    case "1":
-                        cadastrarPessoa();
-                        break;
-                    case "2":
-                        pesquisarUsuario();
-                }
-            }
-
         }
 
     }
+
 
     private static void cadastrarPessoa() {
         Pessoa pessoa = new Pessoa();
