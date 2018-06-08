@@ -2,5 +2,8 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$USER_HOME$/Desktop/fast-track-totem" charset="UTF-8" />
+    <file url="file://$USER_HOME$/Desktop/indicacao" charset="UTF-8" />
+    <file url="file://$USER_HOME$/Desktop/indicacao/indicacao-api" charset="UTF-8" />
+    <file url="file://$USER_HOME$/Desktop/indicacao/indicacao-impl" charset="UTF-8" />
   </component>
 </project>

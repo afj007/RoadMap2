@@ -7,10 +7,15 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="fast-track-totem" />
+        <module name="indicacao-api" />
+        <module name="indicacao-impl" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="fast-track-totem" target="1.8" />
+      <module name="indicacao" target="1.5" />
+      <module name="indicacao-api" target="1.7" />
+      <module name="indicacao-impl" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

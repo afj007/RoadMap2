@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$USER_HOME$/Desktop/indicacao/indicacao-impl" />
+  </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
         <option value="$USER_HOME$/Desktop/fast-track-totem/pom.xml" />
+        <option value="$USER_HOME$/Desktop/indicacao/pom.xml" />
       </list>
     </option>
   </component>

@@ -4,6 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DesafioRoadMap.iml" filepath="$PROJECT_DIR$/DesafioRoadMap.iml" />
       <module fileurl="file://$USER_HOME$/Desktop/fast-track-totem/fast-track-totem.iml" filepath="$USER_HOME$/Desktop/fast-track-totem/fast-track-totem.iml" />
+      <module fileurl="file://$USER_HOME$/Desktop/indicacao/indicacao.iml" filepath="$USER_HOME$/Desktop/indicacao/indicacao.iml" />
+      <module fileurl="file://$USER_HOME$/Desktop/indicacao/indicacao-api/indicacao-api.iml" filepath="$USER_HOME$/Desktop/indicacao/indicacao-api/indicacao-api.iml" />
+      <module fileurl="file://$USER_HOME$/Desktop/indicacao/indicacao-impl/indicacao-impl.iml" filepath="$USER_HOME$/Desktop/indicacao/indicacao-impl/indicacao-impl.iml" />
     </modules>
   </component>
 </project>
