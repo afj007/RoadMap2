@@ -5,86 +5,89 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Agenda {
-    private static ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario> ( );
-    private static ArrayList<Pessoa> listaPessoas = new ArrayList<Pessoa> ( );
+    private static ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>();
+    private static ArrayList<Pessoa> listaPessoas = new ArrayList<Pessoa>();
 
-    private static Scanner ler = new Scanner (System.in);
+    private static Scanner ler = new Scanner(System.in);
 
     public static void main(String[] args) {
-        acessarAgenda ( );
+        acessarAgenda();
     }
 
     private static void acessarAgenda() {
 
         String deseja;
-        System.out.println ("Já é cadastrado ? S / N");
-        deseja = ler.next ( );
+        System.out.println("Já é cadastrado ? S / N");
+        deseja = ler.next();
 
-        if (deseja.equalsIgnoreCase ("S")) {
-            entrarNaAgenda ( );
-        } else if (deseja.equalsIgnoreCase ("n")) {
-            System.out.println ("Deseja cadastrar um usuário? S / N");
-            deseja = ler.next ( );
+        if (deseja.equalsIgnoreCase("S")) {
+            entrarNaAgenda();
+        } else if (deseja.equalsIgnoreCase("n")) {
+            System.out.println("Deseja cadastrar um usuário? S / N");
+            deseja = ler.next();
 
-            if (deseja.equalsIgnoreCase ("s")) {
-                cadastrarUsuario ( );
-                entrarNaAgenda ( );
-            } else if (deseja.equalsIgnoreCase ("n")) {
-                System.out.println ("Finalizar Sistema..........");
+            if (deseja.equalsIgnoreCase("s")) {
+                cadastrarUsuario();
+                entrarNaAgenda();
+            } else if (deseja.equalsIgnoreCase("n")) {
+                System.out.println("Finalizar Sistema..........");
             } else {
-                System.out.println ("Opção invalida.");
-                acessarAgenda ( );
+                System.out.println("Opção invalida.");
+                acessarAgenda();
             }
         } else {
-            System.out.println ("Opção invalida.");
-            acessarAgenda ( );
+            System.out.println("Opção invalida.");
+            acessarAgenda();
         }
     }
 
     private static void cadastrarUsuario() {
         String repetir = "S";
-        while (repetir.equalsIgnoreCase ("s")) {
-            System.out.println ("Digite um apelido de usuário: ");
-            Usuario usuario = new Usuario ( );
-            usuario.setApelido (ler.next ( ));
+        while (repetir.equalsIgnoreCase("s")) {
+            System.out.println("Digite um apelido de usuário: ");
+            Usuario usuario = new Usuario();
+            usuario.setApelido(ler.next());
 
-            System.out.println ("Digite um senha");
-            usuario.setSenha (ler.next ( ));
+            System.out.println("Digite um senha");
+            usuario.setSenha(ler.next());
 
-            listaUsuarios.add (usuario);
-            System.out.println ("Deseja cadastrar mais um usuário? S / N");
-            repetir = ler.next ( );
+            listaUsuarios.add(usuario);
+            System.out.println("Deseja cadastrar mais um usuário? S / N");
+            repetir = ler.next();
         }
 
     }
 
     private static void entrarNaAgenda() {
-        Usuario usuario = new Usuario ( );
+        Usuario usuario = new Usuario();
         String deseja;
-        System.out.println ("Digite o apelido de usuario: ");
-        String apelido = ler.next ( );
+        System.out.println("Digite o apelido de usuario: ");
+        String apelido = ler.next();
         String senha;
         int chance = 0;
-        for (int i = 0; i < listaUsuarios.size ( ); i++) {
-            if (apelido.equals (listaUsuarios.get (i).getApelido ( ))) {
+        for (int i = 0; i < listaUsuarios.size(); i++) {
+            if (apelido.equals(listaUsuarios.get(i).getApelido())) {
                 while (chance < 3) {
 
-                    System.out.println ("Digite a senha: ");
-                    senha = ler.next ( );
+                    System.out.println("Digite a senha: ");
+                    senha = ler.next();
 
-                    if (senha.equals (listaUsuarios.get (i).getSenha ( ))) {
-                        menuAgenda ( );
+                    if (senha.equals(listaUsuarios.get(i).getSenha())) {
+                        menuAgenda();
+                        break;
                     } else {
-                        System.out.println ("Senha invalida");
+                        System.out.println("Senha invalida");
                         chance++;
                     }
+                    if (chance == 3) System.out.println("Tentaivas excedidas!!!");
                 }
             } else {
-                System.out.println ("Acesso invalido");
+                System.out.println("Acesso invalido");
             }
         }
+        menuAgenda();
 
-        if (apelido.equals (usuario.getApelido ( )))
+        /*if (apelido.equals (usuario.getApelido ( )))
 
         {
             System.out.println ("Deseja cadastrar uma pessoa na agenda, S/N? ");
@@ -125,89 +128,107 @@ public class Agenda {
                 }
             }
 
-        }
+        }*/
 
     }
 
     private static void menuAgenda() {
-        System.out.println ("Escolha alguma das opções\n\n1 - Cadastrar Pessoa\n2 - Pesquisar Pessoa\n3 - Cadastrar um novo usuário\n4 - Sair do sistema");
-        String opcao = ler.next ();
-        switch (opcao){
+        System.out.println("Escolha alguma das opções\n\n1 - Cadastrar Pessoa\n2 - Pesquisar Pessoa\n3 - Cadastrar um novo usuário\n4 - Sair do sistema");
+        String opcao = ler.next();
+        switch (opcao) {
             case "1":
-                cadastrarPessoa ();
+                cadastrarPessoa();
             case "2":
                 pesquisarPessoa();
             case "3":
-                cadastrarUsuario ();
+                cadastrarUsuario();
             case "4":
-                System.out.println ("Finalizando sistema..............." );
+                System.out.println("Finalizando sistema...............");
             default:
-                System.out.println ("Opção invalida" );
-                menuAgenda ();
+                System.out.println("Opção invalida");
+                menuAgenda();
         }
     }
 
     private static void pesquisarPessoa() {
-    }
-
-
-    private static void cadastrarPessoa() {
-        Pessoa pessoa = new Pessoa ( );
-        System.out.println ("Digite o nome: ");
-        pessoa.setNome (ler.next ( ));
-
-        System.out.println ("Digite o telefone:");
-        pessoa.setTelefone (ler.next ( ));
-
-        System.out.println ("Digite o Email:");
-        pessoa.setEmail (ler.next ( ));
-
-        listaPessoas.add (pessoa);
-    }
-
-    private static void pesquisarUsuario() {
-        System.out.println ("\n1 - Nome:\n2 - Telefone:\n3 - Email:");
-        String opcao = ler.next ( );
+        System.out.println("\n1 - Nome:\n2 - Telefone:\n3 - Email:");
+        String opcao = ler.next();
         String nome, telefone, email;
+
         boolean existePessoa = false;
         int numeroPessoasEncontrada = 0;
         for (Pessoa listaPessoa : listaPessoas) {
             switch (opcao) {
 
                 case "1":
-                    System.out.println ("Digite o nome dele(a)");
-                    nome = ler.next ( );
-                    if (nome.equals (listaPessoa.getNome ( ))) existePessoa = true;
+                    System.out.println("Digite o nome dele(a)");
+                    nome = ler.next();
+                    if (nome.equals(listaPessoa.getNome())) existePessoa = true;
                     break;
                 case "2":
-                    System.out.println ("Digite o telefone dele(a):");
-                    telefone = ler.next ( );
-                    if (telefone.equals (listaPessoa.getNome ( ))) existePessoa = true;
+                    System.out.println("Digite o telefone dele(a):");
+                    telefone = ler.next();
+                    if (telefone.equals(listaPessoa.getNome())) existePessoa = true;
                     break;
                 case "3":
-                    System.out.println ("Digite o email dele(a)");
-                    email = ler.next ( );
-                    if (email.equals (listaPessoa.getEmail ( ))) existePessoa = true;
+                    System.out.println("Digite o email dele(a)");
+                    email = ler.next();
+                    if (email.equals(listaPessoa.getEmail())) existePessoa = true;
                     break;
                 default:
-                    System.out.println ("Opção invalida");
+                    System.out.println("Opção invalida");
                     break;
             }
 
             if (existePessoa) {
                 numeroPessoasEncontrada++;
-                System.out.println ("Achamos" + numeroPessoasEncontrada + " pessoa(s):");
-                System.out.println ("Nome: " + listaPessoa.getNome ( ));
-                System.out.println ("Telefone: " + listaPessoa.getTelefone ( ));
-                System.out.println ("Email: " + listaPessoa.getTelefone ( ));
+                System.out.println("Achamos" + numeroPessoasEncontrada + " pessoa(s):");
+                System.out.println("Nome: " + listaPessoa.getNome());
+                System.out.println("Telefone: " + listaPessoa.getTelefone());
+                System.out.println("Email: " + listaPessoa.getEmail());
+
             }
             if (numeroPessoasEncontrada == 0) {
-                System.out.println ("Achamos nenhuma Agenda.Pessoa");
+                System.out.println("Achamos nenhuma Agenda.Pessoa");
             }
+            menuAgenda();
+        }
 
+    }
+
+    private static void cadastrarPessoa() {
+        Pessoa pessoa = new Pessoa();
+        System.out.println("Digite o nome: ");
+        pessoa.setNome(ler.next());
+
+        System.out.println("Digite o telefone:");
+        pessoa.setTelefone(ler.next());
+
+        System.out.println("Digite o Email:");
+        pessoa.setEmail(ler.next());
+
+        listaPessoas.add(pessoa);
+        boolean tentativa = true;
+        while (tentativa) {
+            System.out.println("Deseja cadastrar mais uma pessoa? S / N");
+            String deseja = ler.next();
+
+            if (deseja.equalsIgnoreCase("s")) {
+                cadastrarPessoa();
+            }
+            if (deseja.equalsIgnoreCase("n")) {
+                menuAgenda();
+                tentativa = false;
+            } else {
+                System.out.println("Opção invalida");
+                tentativa = true;
+            }
         }
 
     }
 
 }
+
+
+
 
