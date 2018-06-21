@@ -86,48 +86,6 @@ public class Agenda {
         }
         menuAgenda ( );
 
-        /*if (apelido.equals (usuario.getApelido ( )))
-
-        {
-            System.out.println ("Deseja cadastrar uma pessoa na agenda, S/N? ");
-            String respota = ler.next ( );
-
-            if (respota.equals ("S") || respota.equals ("s")) {
-                String nome, telefone, email;
-                System.out.println ("Digite o nome da Agenda.Pessoa: ");
-                nome = ler.next ( );
-                System.out.println ("Digite o telefone: ");
-                telefone = ler.next ( );
-                System.out.println ("Digite o email: ");
-                email = ler.next ( );
-            }
-
-            System.out.println ("Deseja pesquisar por uma pessoa?");
-            deseja = ler.next ( );
-            if (deseja.equalsIgnoreCase ("S")) {
-
-                pesquisarUsuario ( );
-            }
-
-            System.out.println ("Deseja finalizar sistema de agenda? S / N");
-            deseja = ler.next ( );
-
-            if (deseja.equalsIgnoreCase ("s")) {
-                System.out.println ("FINALIZANDO SISTEMA......");
-            }
-            if (deseja.equalsIgnoreCase ("n")) {
-                System.out.println ("O que deseja fazer?\n1 - Cadastrar Agenda.Pessoa?\n2 - Pesquisar Agenda.Pessoa?");
-                String opcao = ler.next ( );
-                switch (opcao) {
-                    case "1":
-                        cadastrarPessoa ( );
-                        break;
-                    case "2":
-                        pesquisarUsuario ( );
-                }
-            }
-
-        }*/
 
     }
 
@@ -151,7 +109,7 @@ public class Agenda {
 
     private static void pesquisarPessoa() {
         Pessoa pessoa = new Pessoa ( );
-        System.out.println ("\n1 - Nome:\n2 - Telefone:\n3 - Email:");
+        System.out.println ("\n1 - Nome:\n2 - Telefone:\n3 - Email:\n4 - Qualquer conteudo");
         String opcao = ler.next ( );
         String nome, telefone, email;
 
@@ -168,14 +126,20 @@ public class Agenda {
             case "2":
                 System.out.println ("Digite o telefone dele(a):");
                 telefone = ler.next ( );
-                pessoa = pesquisarPorNome (telefone);
+                pessoa = pesquisarPorTelefone (telefone);
                 if (pessoa != null) existePessoa = true;
                 break;
             case "3":
                 System.out.println ("Digite o email dele(a)");
                 email = ler.next ( );
-                pessoa = pesquisarPorNome (email);
+                pessoa = pesquisarPorEmail (email);
                 if (pessoa != null) existePessoa = true;
+                break;
+            case "4":
+                System.out.println ("Digite o que deseja encontrar");
+                String conteudo = ler.next ( );
+                pessoa = pesquisarPorTudo (conteudo );
+                if (pessoa != null)existePessoa = true;
                 break;
             default:
                 System.out.println ("Opção invalida");
@@ -202,7 +166,7 @@ public class Agenda {
         Pessoa pessoa;
         for (int i = 0; i < listaPessoas.size ( ); i++) {
             pessoa = listaPessoas.get (i);
-            if (nome.equals (pessoa.getNome ( ))) {
+            if (pessoa.getNome ( ).toLowerCase ().contains (nome.toLowerCase ())) {
                 return pessoa;
             }
         }
@@ -224,9 +188,25 @@ public class Agenda {
         Pessoa pessoa;
         for (int i = 0; i < listaPessoas.size ( ); i++) {
             pessoa = listaPessoas.get (i);
-            if (email.equals (pessoa.getEmail ( ))) {
+            if (pessoa.getNome ().contains (email)) {
                 return pessoa;
             }
+        }
+        return null;
+    }
+
+    private static Pessoa pesquisarPorTudo(String conteudo) {
+        Pessoa pessoaPorNome = pesquisarPorNome (conteudo);
+        if (pessoaPorNome == null) {
+            Pessoa pessoaPorEmail = pesquisarPorEmail (conteudo);
+            if (pessoaPorEmail == null){
+                System.out.println ("Não achamos ninguém com essa informação" );
+                pesquisarPessoa ();
+            }else {
+                return pessoaPorEmail;
+            }
+        }else {
+            return pessoaPorNome;
         }
         return null;
     }
