@@ -80,13 +80,11 @@ public class Agenda {
                     }
                     if (chance == 3) System.out.println ("Tentaivas excedidas!!!");
                 }
-            } else {
-                System.out.println ("Acesso invalido");
+            } if (i == listaUsuarios.size ()){
+                System.out.println ("Usuário invalido");
             }
         }
-        menuAgenda ( );
-
-
+        entrarNaAgenda ( );
     }
 
     private static void menuAgenda() {
@@ -105,6 +103,37 @@ public class Agenda {
                 System.out.println ("Opção invalida");
                 menuAgenda ( );
         }
+    }
+
+    private static void cadastrarPessoa() {
+        Pessoa pessoa = new Pessoa ( );
+        System.out.println ("Digite o nome: ");
+        pessoa.setNome (ler.next ( ));
+
+        System.out.println ("Digite o telefone:");
+        pessoa.setTelefone (ler.next ( ));
+
+        System.out.println ("Digite o Email:");
+        pessoa.setEmail (ler.next ( ));
+
+        listaPessoas.add (pessoa);
+        boolean tentativa = true;
+        while (tentativa) {
+            System.out.println ("Deseja cadastrar mais uma pessoa? S / N");
+            String deseja = ler.next ( );
+
+            if (deseja.equalsIgnoreCase ("s")) {
+                cadastrarPessoa ( );
+            }
+            if (deseja.equalsIgnoreCase ("n")) {
+                menuAgenda ( );
+                tentativa = false;
+            } else {
+                System.out.println ("Opção invalida");
+                tentativa = true;
+            }
+        }
+
     }
 
     private static void pesquisarPessoa() {
@@ -138,8 +167,8 @@ public class Agenda {
             case "4":
                 System.out.println ("Digite o que deseja encontrar");
                 String conteudo = ler.next ( );
-                pessoa = pesquisarPorTudo (conteudo );
-                if (pessoa != null)existePessoa = true;
+                pessoa = pesquisarPorTudo (conteudo);
+                if (pessoa != null) existePessoa = true;
                 break;
             default:
                 System.out.println ("Opção invalida");
@@ -166,7 +195,7 @@ public class Agenda {
         Pessoa pessoa;
         for (int i = 0; i < listaPessoas.size ( ); i++) {
             pessoa = listaPessoas.get (i);
-            if (pessoa.getNome ( ).toLowerCase ().contains (nome.toLowerCase ())) {
+            if (pessoa.getNome ( ).toLowerCase ( ).contains (nome.toLowerCase ( ))) {
                 return pessoa;
             }
         }
@@ -188,7 +217,7 @@ public class Agenda {
         Pessoa pessoa;
         for (int i = 0; i < listaPessoas.size ( ); i++) {
             pessoa = listaPessoas.get (i);
-            if (pessoa.getNome ().contains (email)) {
+            if (pessoa.getNome ( ).contains (email)) {
                 return pessoa;
             }
         }
@@ -199,48 +228,18 @@ public class Agenda {
         Pessoa pessoaPorNome = pesquisarPorNome (conteudo);
         if (pessoaPorNome == null) {
             Pessoa pessoaPorEmail = pesquisarPorEmail (conteudo);
-            if (pessoaPorEmail == null){
-                System.out.println ("Não achamos ninguém com essa informação" );
-                pesquisarPessoa ();
-            }else {
+            if (pessoaPorEmail == null) {
+                System.out.println ("Não achamos ninguém com essa informação");
+                pesquisarPessoa ( );
+            } else {
                 return pessoaPorEmail;
             }
-        }else {
+        } else {
             return pessoaPorNome;
         }
         return null;
     }
 
-    private static void cadastrarPessoa() {
-        Pessoa pessoa = new Pessoa ( );
-        System.out.println ("Digite o nome: ");
-        pessoa.setNome (ler.next ( ));
-
-        System.out.println ("Digite o telefone:");
-        pessoa.setTelefone (ler.next ( ));
-
-        System.out.println ("Digite o Email:");
-        pessoa.setEmail (ler.next ( ));
-
-        listaPessoas.add (pessoa);
-        boolean tentativa = true;
-        while (tentativa) {
-            System.out.println ("Deseja cadastrar mais uma pessoa? S / N");
-            String deseja = ler.next ( );
-
-            if (deseja.equalsIgnoreCase ("s")) {
-                cadastrarPessoa ( );
-            }
-            if (deseja.equalsIgnoreCase ("n")) {
-                menuAgenda ( );
-                tentativa = false;
-            } else {
-                System.out.println ("Opção invalida");
-                tentativa = true;
-            }
-        }
-
-    }
 
 }
 
