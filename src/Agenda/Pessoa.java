@@ -1,38 +1,36 @@
 package Agenda;
 
-public class Pessoa extends Usuario {
+class Pessoa extends Usuario {
     String nome, telefone,email;
 
-    public Pessoa() {
+    Pessoa() {
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
     }
 
-    public String getNome() {
+    String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
+    void setNome(String nome) {
         this.nome = nome;
     }
 
-    public String getTelefone() {
+    String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(String telefone) {
+    void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
-    public String getEmail() {
+    String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    void setEmail(String email) {
         this.email = email;
     }
-
-
 
 }
