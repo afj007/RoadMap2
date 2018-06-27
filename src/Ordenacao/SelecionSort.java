@@ -30,7 +30,7 @@ public class SelecionSort {
                 }
                 if (lista[i] < menor) {
                     menor = lista[i];
-                    
+
                 }
             }
             if (i == lista.length) {
